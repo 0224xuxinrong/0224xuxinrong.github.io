@@ -9,10 +9,10 @@
 </head>
 <body>
 <tw-story><noscript><tw-noscript>JavaScript needs to be enabled to play 未命名故事.</tw-noscript></noscript></tw-story>
-<tw-storydata name="未命名故事" startnode="2" creator="Twine" creator-version="2.11.1" format="Harlowe" format-version="3.3.9" ifid="E5F308EF-D90E-40A8-A6AA-C3867EF39731" options="" tags="" zoom="0.6" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">@import url("https://fontsapi.zeoseven.com/256/main/result.css");
+<tw-storydata name="未命名故事" startnode="2" creator="Twine" creator-version="2.11.1" format="Harlowe" format-version="3.3.9" ifid="E5F308EF-D90E-40A8-A6AA-C3867EF39731" options="" tags="" zoom="0.6" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">@import url("https://fontsapi.zeoseven.com/10/main/result.css");
 
 body {
-    font-family: "Huiwen-mincho";
+    font-family: "WenQuanYi Bitmap Song 16px";
     font-weight: normal;
 }
 /**
@@ -35,118 +35,258 @@ body {
 /** End of HAL code */</script><tw-tag name="header" color="blue"></tw-tag><tw-tag name="startup" color="yellow"></tw-tag><tw-passagedata pid="1" name="hal.tracks" tags="" position="0,175" size="100,100">bgm1:https://0224xuxinrong.github.io/bgm1.mp3
 bgm2:https://0224xuxinrong.github.io/bgm2.mp3
 bgm3:https://0224xuxinrong.github.io/bgm3.mp3
-bgm4:https://0224xuxinrong.github.io/bgm4.mp3</tw-passagedata><tw-passagedata pid="2" name="免责声明" tags="" position="250,175" size="100,100">&lt;div style=&quot;
+bgm4:https://0224xuxinrong.github.io/bgm4.mp3</tw-passagedata><tw-passagedata pid="2" name="免责声明" tags="" position="225,175" size="100,100">&lt;div style=&quot;
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-image: url(&#39;https://0224xuxinrong.github.io/IMG_7375.jpeg&#39;);
-  background-size: cover;
-  background-position: center;
   margin: 0;
   padding: 0;
 &quot;&gt;
+  &lt;!-- 背景图层 + 半透明遮罩 --&gt;
+  &lt;div style=&quot;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url(&#39;https://0224xuxinrong.github.io/IMG_7375.jpeg&#39;);
+    background-size: cover;
+    background-position: center;
+    opacity: 0.6; /* 背景透明度，数值越小越透明 */
+  &quot;&gt;&lt;/div&gt;
+
+  &lt;!-- 文本层（更清晰） --&gt;
   &lt;div style=&quot;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     color: #fff;
-    font-family: &#39;Huiwen-mincho&#39;;
-    font-size: 20px; /* 调整为适中的20px */
-    line-height: 2; /* 行高匹配字体大小 */
+    font-family: &#39;WenQuanYi Bitmap Song 16px&#39;;
+    font-size: 20px;
+    line-height: 2;
     text-align: center;
-    text-shadow: 1px 1px 3px #000;
+    text-shadow: 2px 2px 5px #000; /* 加深阴影让文字更突出 */
     width: 80%;
+    z-index: 1;
   &quot;&gt;
-    上课发呆突然产生想法后很随便做出来的东西...
-    就只是一个小故事，能力和审美都很有限所以最终呈现的这一坨的唯一用处应该就是无聊的时候消磨几分钟时间
-    祝大家新年快乐！
+    本来想做一个简陋版橙光小游戏设置选项让大家能玩不同的分支，但是我太太太笨了能力很有限还没做到那一步，几度搁置后只变成现在这样...
+    拿来给大家无聊的时候消磨时间，就当作是看手动式梦女文吧！
     [[开始]]
   &lt;/div&gt;
 &lt;/div&gt;
 {
 (track:&#39;bgm1&#39;,&#39;loop&#39;,true)
 (track:&#39;bgm1&#39;,&#39;playwhenpossible&#39;)
-}</tw-passagedata><tw-passagedata pid="3" name="装修" tags="header" position="0,275" size="100,100">(enchant:?page,(font:&quot;Huiwen-mincho&quot;))</tw-passagedata><tw-passagedata pid="4" name="开始" tags="" position="250,300" size="100,100">&lt;style&gt;
+}</tw-passagedata><tw-passagedata pid="3" name="装修" tags="header" position="0,275" size="100,100">(enchant:?page,(font:&quot;WenQuanYi Bitmap Song 16px&quot;))</tw-passagedata><tw-passagedata pid="4" name="开始" tags="" position="225,300" size="100,100">&lt;style&gt;
+/* 原有样式不变，新增关键CSS动画（核心！） */
+#text-box span {
+    opacity: 0; /* 初始透明 */
+    animation: fadeIn 0.1s linear forwards; /* 显示动画 */
+}
+@keyframes fadeIn {
+    to { opacity: 1; }
+}
+/* 其他原有样式完全保留... */
+tw-story, tw-passage, tw-sidebar {
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    background: transparent !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    max-width: none !important;
+    max-height: none !important;
+    position: static !important;
+}
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+    line-height: 1.2 !important;
 }
-
 body {
-    background: black;
-    width: 100vw;
-    height: 100vh;
-    position: fixed;
-    top: 0;
-    left: 0;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    background: black !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    overflow: hidden !important;
 }
-
 #img-box {
-    width: 95vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    position: absolute !important;
+    top: 22% !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: 95vw !important;
+    text-align: center !important;
+    height: 32vh !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
 }
 #img-box img {
-    max-width: 100%;
-    max-height: 60vh;
-    object-fit: contain;
-    display: block;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    object-fit: contain !important;
+    display: block !important;
 }
-
-/* 图片与说话人间隙2px */
-#speaker {
-    width: 95vw;
-    color: #ffd700;
-    font-size: 26px;
-    font-weight: bold;
-    text-align: left;
-    margin-top: 2px;
-}
-
-/* 说话人与文本间隙2px */
 #text-box {
-    width: 95vw;
-    color: white;
-    font-size: 20px;
-    text-align: center;
-    margin-top: 2px;
+    position: absolute !important;
+    top: calc(22% + 32vh + 41px) !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    color: #E0E0E0 !important;
+    font-size: 21px !important;
+    text-align: center !important;
+    white-space: pre-line !important;
+    word-wrap: break-word !important;
+    word-break: keep-all !important;
+    max-width: 95vw !important;
+    font-family: &quot;WenQuanYi Bitmap Song 16px&quot;, sans-serif !important;
+}
+#speaker {
+    position: absolute !important;
+    top: calc(22% + 32vh) !important;
+    left: 2.5vw !important;
+    color: #E0E0E0 !important;
+    font-size: 28px !important;
+    font-weight: normal !important;
+    text-shadow: 0 0 2px rgba(255,255,255,0.1) !important;
 }
 &lt;/style&gt;
-
 &lt;div id=&quot;img-box&quot;&gt;
     &lt;img src=&quot;https://0224xuxinrong.github.io/IMG_7443.jpeg&quot;&gt;
 &lt;/div&gt;
-
-&lt;div id=&quot;speaker&quot;&gt;常赫&lt;/div&gt;
-
+&lt;div id=&quot;speaker&quot;&gt;&lt;/div&gt;
 &lt;div id=&quot;text-box&quot;&gt;&lt;/div&gt;
-
 &lt;script&gt;
 const lines = [
-    &quot;我同你是陌生人。&quot;,
-    &quot;你放过他，比较没有负担地选择我吧。&quot;,
-    &quot;哪怕只是一时冲动，我也愿意等。&quot;
+    { text: &quot;人被流星击中的概率是一百亿分之一，\n你的朋友其实是一只披着人皮的猫咪的可能性......\n　　　　　　&quot;, speaker: &quot;&quot; },
+    { text: &quot;人被流星击中的概率是一百亿分之一，\n你的朋友其实是一只披着人皮的猫咪的可能性......\n也绝不为零。&quot;, speaker: &quot;&quot; },
+    { text: &quot;我当然不是天经地义地说出这种一点都不唯物主义的话！&quot;, speaker: &quot;&quot; },
+    { text: &quot;尽管我从来都不是吸猫体质，尽管我妈却常给我算命说：\n“你的猫缘好像很不错哦？”\n　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　&quot;, speaker: &quot;&quot; },
+    { text: &quot;尽管我从来都不是吸猫体质，尽管我妈却常给我算命说：\n“你的猫缘好像很不错哦？”\n我也从来没有想过有一天callback竟然是以朋友大变活猫的方式出现...&quot;, speaker: &quot;&quot; },
+    { text: &quot;但是，人在某一个瞬间，都有必须要向命运低头的时候，对吧？&quot;, speaker: &quot;&quot; },
+    { text: &quot;“金汝珠女士，从我们收集到的调查问卷来看，您是有过弃养猫咪的行为吧？\n　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　\n　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　&quot;, speaker: &quot;宠物前台&quot; },
+    { text: &quot;“金汝珠女士，从我们收集到的调查问卷来看，您是有过弃养猫咪的行为吧？\n这是非常恶劣的！我们绝不允许这样的情况发生。\n　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　&quot;, speaker: &quot;宠物前台&quot; },
+    { text: &quot;“金汝珠女士，从我们收集到的调查问卷来看，您是有过弃养猫咪的行为吧？\n这是非常恶劣的！我们绝不允许这样的情况发生。\n因此，很抱歉通知您，我们是绝对不可能向您...您这种人提供宠物领养服务的。”&quot;, speaker: &quot;宠物前台&quot; },
+    { text: &quot;我什么时候弃养过猫咪了？！\n　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　&quot;, speaker: &quot;&quot; },
+    { text: &quot;我什么时候弃养过猫咪了？！\n别说弃养了，根本连养都没养过，这和在不知情情况下被办理婚姻登记有什么区别？&quot;, speaker: &quot;&quot; },
+    { text: &quot;可领养机构前台的女士就是严肃又笃定地看着我。&quot;, speaker: &quot;&quot; },
+    { text: &quot;“为了检验您是否具备爱猫的能力，我们找到了您过去邂逅的所有小猫来给您做出评估，当然也包括目前已在天堂的。\n　　　　　　　　　　　　　　　　　　　　　　　\n　　　　　　　　　　　　　　　　　　　&quot;, speaker: &quot;宠物前台&quot; },
+    { text: &quot;“为了检验您是否具备爱猫的能力，我们找到了您过去邂逅的所有小猫来给您做出评估，当然也包括目前已在天堂的。\n前期结果很理想，但很遗憾，最后有一只猫咪控诉，\n　　　　　　　　　　　　　　　　　　　&quot;, speaker: &quot;宠物前台&quot; },
+    { text: &quot;“为了检验您是否具备爱猫的能力，我们找到了您过去邂逅的所有小猫来给您做出评估，当然也包括目前已在天堂的。\n前期结果很理想，但很遗憾，最后有一只猫咪控诉，\n您在养他的过程中，一共放弃了他三次。”&quot;, speaker: &quot;宠物前台&quot; },
+    { text: &quot;真是活见鬼了。&quot;, speaker: &quot;&quot; },
+    { text: &quot;这是污蔑！　　　　　　　　　　　　　　　　　　　　　\n　　　　　　　　　　　　　　　　　　　　　\n　　　　　　　　　&quot;, speaker: &quot;&quot; },
+    { text: &quot;这是污蔑！任何人受到这种程度的污蔑都不会坐以待毙的！\n　　　　　　　　　　　　　　　　　　　　　\n　　　　　　　　　&quot;, speaker: &quot;&quot; },
+    { text: &quot;这是污蔑！任何人受到这种程度的污蔑都不会坐以待毙的！\n实在忍无可忍，于是我伸手夺过她手中的问卷，\n　　　　　　　　　&quot;, speaker: &quot;&quot; },
+    { text: &quot;这是污蔑！任何人受到这种程度的污蔑都不会坐以待毙的！\n实在忍无可忍，于是我伸手夺过她手中的问卷，\n然后，故事便往非常刻板的方向发展——&quot;, speaker: &quot;&quot; },
+    { text: &quot;问卷的姓名栏，我朋友元彬的名字堂而皇之、\n　　　　　　　　　&quot;, speaker: &quot;&quot; },
+    { text: &quot;问卷的姓名栏，我朋友元彬的名字堂而皇之、\n工工整整地出现了。&quot;, speaker: &quot;&quot; },
+    { text: &quot;没错。　　　　　　　　　　　\n　　　　　　　　　　　　　\n　　　　　　　　　\n　　　　　　　　　　　　　　　　　&quot;, speaker: &quot;&quot; },
+    { text: &quot;没错。就像小说里常写的那样，\n漂亮的要死的我的朋友朴元彬\n　　　　　　　　　\n　　　　　　　　　　　　　　　　　&quot;, speaker: &quot;&quot; },
+    { text: &quot;没错。就像小说里常写的那样，\n漂亮的要死的我的朋友朴元彬\n也就是左边这家伙，\n　　　　　　　　　　　　　　　　　&quot;, speaker: &quot;&quot; },
+    { text: &quot;没错。就像小说里常写的那样，\n漂亮的要死的我的朋友朴元彬\n也就是左边这家伙，\n其实是和右边那团黑炭相差无异的——&quot;, speaker: &quot;&quot; },
+    { text: &quot;一只黑猫。&quot;, speaker: &quot;&quot; }
 ];
 let index = 0;
 const textBox = document.getElementById(&quot;text-box&quot;);
-textBox.innerText = lines[index];
-
-document.body.onclick = function () {
+const speakerBox = document.getElementById(&quot;speaker&quot;);
+const CHAR_DELAY = 15; // 每个字符间隔15ms，保持你的要求
+// 清理文本和找新增起点函数不变
+function cleanText(text) {
+    return text.replace(/　/g, &#39;&#39;).replace(/\n/g, &#39;&#39;);
+}
+function findNewContentStart(prevText, currentText) {
+    const cleanPrev = cleanText(prevText);
+    const cleanCurrent = cleanText(currentText);
+    
+    if (cleanCurrent.length &gt; cleanPrev.length) {
+        let start = 0;
+        while (start &lt; cleanPrev.length &amp;&amp; cleanPrev[start] === cleanCurrent[start]) {
+            start++;
+        }
+        let realStart = 0;
+        let cleanCount = 0;
+        for (let i = 0; i &lt; currentText.length &amp;&amp; cleanCount &lt; start; i++) {
+            const char = currentText[i];
+            if (char !== &#39;　&#39; &amp;&amp; char !== &#39;\n&#39;) {
+                cleanCount++;
+            }
+            realStart = i;
+        }
+        return realStart + 1;
+    }
+    return 0;
+}
+// 终极动画逻辑（CSS动画+延迟叠加，100%可见）
+function typeText(currentLine, callback) {
+    textBox.innerHTML = &quot;&quot;;
+    speakerBox.innerText = currentLine.speaker;
+    
+    const allChars = currentLine.text.split(&#39;&#39;);
+    const charElements = [];
+    allChars.forEach(char =&gt; {
+        if (char === &#39;\n&#39;) {
+            charElements.push(document.createElement(&#39;br&#39;));
+        } else {
+            const span = document.createElement(&#39;span&#39;);
+            span.textContent = char;
+            charElements.push(span);
+        }
+    });
+    charElements.forEach(el =&gt; textBox.appendChild(el));
+    const spans = textBox.querySelectorAll(&#39;span&#39;);
+    
+    const prevLine = index &gt; 0 ? lines[index - 1] : { text: &quot;&quot; };
+    const newStart = findNewContentStart(prevLine.text, currentLine.text);
+    
+    let validCharCount = 0;
+    for (let i = 0; i &lt; newStart &amp;&amp; i &lt; currentLine.text.length; i++) {
+        if (currentLine.text[i] !== &#39;\n&#39;) validCharCount++;
+    }
+    
+    // 已显部分直接显示（无动画）
+    for (let i = 0; i &lt; validCharCount &amp;&amp; i &lt; spans.length; i++) {
+        spans[i].style.opacity = 1;
+        spans[i].style.animation = &#39;none&#39;; // 取消动画
+    }
+    
+    // 新增部分逐字动画（延迟叠加，肉眼必见）
+    spans.forEach((span, i) =&gt; {
+        if (i &gt;= validCharCount) {
+            // 每个字符延迟 = 索引差 × 15ms，形成逐字效果
+            span.style.animationDelay = `${(i - validCharCount) * CHAR_DELAY}ms`;
+        }
+    });
+    
+    // 动画结束后执行回调（可选）
+    const totalDelay = (spans.length - validCharCount) * CHAR_DELAY + 100;
+    setTimeout(() =&gt; {
+        callback &amp;&amp; callback();
+    }, totalDelay);
+}
+// 初始化和点击事件不变
+typeText(lines[index]);
+document.addEventListener(&#39;click&#39;, function handler() {
+    // 立即显示当前句所有字符
+    const spans = textBox.querySelectorAll(&#39;span&#39;);
+    spans.forEach(span =&gt; {
+        span.style.opacity = 1;
+        span.style.animation = &#39;none&#39;;
+    });
+    
     if (index &lt; lines.length - 1) {
         index++;
-        textBox.innerText = lines[index];
+        typeText(lines[index]);
+    } else {
+        document.removeEventListener(&#39;click&#39;, handler);
     }
-};
+});
 &lt;/script&gt;</tw-passagedata></tw-storydata>
 <script title="Twine engine code" data-main="harlowe">(function(){"use strict";
 var require,define;!function(){var e={},r={};require=function(i){var n=e[i];return n&&(r[i]=n[1].apply(void 0,n[0].map(require)),e[i]=void 0),r[i]},(define=function(r,i,n){if("function"==typeof r)return r();e[r]=[i,n]}).amd=!0}();/*!
